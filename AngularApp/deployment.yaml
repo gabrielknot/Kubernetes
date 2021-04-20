@@ -1,19 +1,20 @@
 apiVersion: apps/v1 
 kind: Deployment 
 metadata:
-  name: api-deployment 
+  name: frontend-deployment 
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: api 
+      app: frontend 
   template:
     metadata:
       labels:
-        app: api
+        app: frontend
     spec:
       containers:
-      - name: api
+      - name: frontend
         image: frontend
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-
