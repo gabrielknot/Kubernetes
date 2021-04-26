@@ -1,7 +1,7 @@
 apiVersion: {{ .Values.apiVersion }}
 kind: Ingress
 metadata:
-  name: {{ .Realease.Name }}-ingress
+  name: {{ .Release.Name }}-ingress
 spec:
   frontend:
     serviceName: {{ .Values.frontend.name }}-service
@@ -11,5 +11,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: {{ .Realease.Name }}-service
+          serviceName: {{ .Release.Name }}-service
           servicePort: {{ .Values.service.servicePort }}

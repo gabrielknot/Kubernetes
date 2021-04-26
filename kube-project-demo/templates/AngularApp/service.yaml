@@ -1,9 +1,9 @@
 apiVersion: {{ .Values.apiVersion }}
 kind: Service
 metadata:
-  name: {{ .Realease.Name  }}-service
+  name: {{ .Release.Name  }}-service
   labels:
-    name: {{ .Realease.Name }}-service
+    name: {{ .Release.Name }}-service
 spec:
   type: LoadBalancer
   ports:
@@ -13,4 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ .Ralease.Name }}
+    app: {{ .Release.Name }}
