@@ -1,8 +1,15 @@
-# Default values for metallb-config.
+# Default values for frontend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-apiVersion: apps/v1
-ipListadresses: 192.168.1.240-192.168.1.250
+
+replicaCount: 3 
+
+image:
+  repository: frontend
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -63,8 +70,8 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
-  enabled: false
-  minReplicas: 1
+  enabled: true
+  minReplicas: 3
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
