@@ -1,0 +1,20 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: Deployment 
+metadata:
+  name: {{ .Realease.Name }}-deployment 
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }} 
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Ralease.Name }}
+        image: {{ .Values.image.repository }}
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.frontend.image.containerPort }}

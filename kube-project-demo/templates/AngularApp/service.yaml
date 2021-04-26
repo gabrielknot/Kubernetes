@@ -1,0 +1,16 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: Service
+metadata:
+  name: {{ .Realease.Name  }}-service
+  labels:
+    name: {{ .Realease.Name }}-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.service.servicePort }}        
+      targetPort: {{ .Values.service.servicePort }}
+      nodePort: {{ .Values.service.nodePort }}  
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Ralease.Name }}

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kube-project-demo.fullname" . }}
+  name: {{ include "metallb-config.fullname" . }}
   labels:
-    {{- include "kube-project-demo.labels" . | nindent 4 }}
+    {{- include "metallb-config.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "kube-project-demo.selectorLabels" . | nindent 6 }}
+      {{- include "metallb-config.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "kube-project-demo.selectorLabels" . | nindent 8 }}
+        {{- include "metallb-config.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "kube-project-demo.serviceAccountName" . }}
+      serviceAccountName: {{ include "metallb-config.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

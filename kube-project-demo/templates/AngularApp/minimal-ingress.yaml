@@ -1,0 +1,15 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: Ingress
+metadata:
+  name: {{ .Realease.Name }}-ingress
+spec:
+  frontend:
+    serviceName: {{ .Values.frontend.name }}-service
+    servicePort: {{ .Values.service.servicePort }}
+  rules:
+  - host: login.0.0.0.0
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Realease.Name }}-service
+          servicePort: {{ .Values.service.servicePort }}

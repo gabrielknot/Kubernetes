@@ -1,17 +1,8 @@
-# Default values for kube-project-demo.
+# Default values for metallb-config.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-apiVersion: apps/v1
-debugging: false 
 
-replicaCount: 10
-
-frontend:
-  image:
-    conatinerPort: 80
-service:
-  servicePort: 8080
-  nodePort: 30036 
+replicaCount: 1
 
 image:
   repository: nginx
@@ -79,7 +70,7 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
